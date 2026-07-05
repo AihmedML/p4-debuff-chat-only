@@ -25,7 +25,8 @@ $forbiddenPatterns = @(
     "OnUpdate",
     "Controller.Hide",
     "UseSelfmark",
-    "/marking"
+    "/marking",
+    "InternationalString"
 )
 
 foreach ($pattern in $requiredPatterns) {
