@@ -8,6 +8,7 @@ using ECommons.GameFunctions;
 using ECommons.GameHelpers;
 using ECommons.Hooks.ActionEffectTypes;
 using ECommons.ImGuiMethods;
+using Splatoon.Serializables;
 using Splatoon.SplatoonScripting;
 using Splatoon.Utility;
 using System.Collections.Generic;
