@@ -8,7 +8,6 @@ using ECommons.GameFunctions;
 using ECommons.GameHelpers;
 using ECommons.Hooks.ActionEffectTypes;
 using ECommons.ImGuiMethods;
-using Splatoon.Serializables;
 using Splatoon.SplatoonScripting;
 using Splatoon.Utility;
 using System.Collections.Generic;
@@ -134,24 +133,24 @@ public class P4_Debuff_Reminder_ChatOnly : SplatoonScript<P4_Debuff_Reminder_Cha
         if((Debuffs.DebuffSpread.Contains(status.StatusId) && !IsLie) ||
            (Debuffs.DebuffStack.Contains(status.StatusId) && IsLie))
         {
-            Print(UIColor.Orange, status.RemainingTime > 60f ? C.LongSpread.Get() : C.ShortSpread.Get());
+            Print(UIColor.Orange, status.RemainingTime > 60f ? C.LongSpread : C.ShortSpread);
         }
 
         if(Debuffs.DebuffLookAway.Contains(status.StatusId))
         {
             if(status.RemainingTime > 65f)
             {
-                Print(UIColor.Red, IsLie ? C.LongGazeInv.Get() : C.LongGaze.Get());
+                Print(UIColor.Red, IsLie ? C.LongGazeInv : C.LongGaze);
             }
             else
             {
-                Print(UIColor.Red, IsLie ? C.ShortGazeInv.Get() : C.ShortGaze.Get());
+                Print(UIColor.Red, IsLie ? C.ShortGazeInv : C.ShortGaze);
             }
         }
 
         if(Debuffs.DebuffDontMove.Contains(status.StatusId))
         {
-            Print(UIColor.Yellow, IsLie ? C.AccelerationBombInv.Get() : C.AccelerationBomb.Get());
+            Print(UIColor.Yellow, IsLie ? C.AccelerationBombInv : C.AccelerationBomb);
         }
     }
 
@@ -183,42 +182,42 @@ public class P4_Debuff_Reminder_ChatOnly : SplatoonScript<P4_Debuff_Reminder_Cha
 
         ImGui.Separator();
         ImGui.SetNextItemWidth(260f);
-        C.AccelerationBomb.ImGuiEditNoDefault();
+        ImGui.InputText("##AccelerationBomb", ref C.AccelerationBomb, 200);
         ImGui.SameLine();
         ImGuiEx.Text("Acceleration bomb, normal");
 
         ImGui.SetNextItemWidth(260f);
-        C.AccelerationBombInv.ImGuiEditNoDefault();
+        ImGui.InputText("##AccelerationBombInv", ref C.AccelerationBombInv, 200);
         ImGui.SameLine();
         ImGuiEx.Text("Acceleration bomb, inverted");
 
         ImGui.SetNextItemWidth(260f);
-        C.LongGaze.ImGuiEditNoDefault();
+        ImGui.InputText("##LongGaze", ref C.LongGaze, 200);
         ImGui.SameLine();
         ImGuiEx.Text("Long gaze (away)");
 
         ImGui.SetNextItemWidth(260f);
-        C.LongGazeInv.ImGuiEditNoDefault();
+        ImGui.InputText("##LongGazeInv", ref C.LongGazeInv, 200);
         ImGui.SameLine();
         ImGuiEx.Text("Long gaze (at)");
 
         ImGui.SetNextItemWidth(260f);
-        C.ShortGaze.ImGuiEditNoDefault();
+        ImGui.InputText("##ShortGaze", ref C.ShortGaze, 200);
         ImGui.SameLine();
         ImGuiEx.Text("Short gaze (away)");
 
         ImGui.SetNextItemWidth(260f);
-        C.ShortGazeInv.ImGuiEditNoDefault();
+        ImGui.InputText("##ShortGazeInv", ref C.ShortGazeInv, 200);
         ImGui.SameLine();
         ImGuiEx.Text("Short gaze (at)");
 
         ImGui.SetNextItemWidth(260f);
-        C.LongSpread.ImGuiEditNoDefault();
+        ImGui.InputText("##LongSpread", ref C.LongSpread, 200);
         ImGui.SameLine();
         ImGuiEx.Text("Long spread");
 
         ImGui.SetNextItemWidth(260f);
-        C.ShortSpread.ImGuiEditNoDefault();
+        ImGui.InputText("##ShortSpread", ref C.ShortSpread, 200);
         ImGui.SameLine();
         ImGuiEx.Text("Short spread");
 
@@ -235,13 +234,13 @@ public class P4_Debuff_Reminder_ChatOnly : SplatoonScript<P4_Debuff_Reminder_Cha
     {
         public bool OutputInChat = true;
         public XivChatType OverrideChatType = XivChatType.None;
-        public InternationalString AccelerationBomb = new() { En = "Acceleration bomb on YOU (DON'T MOVE)" };
-        public InternationalString AccelerationBombInv = new() { En = "Inverted acceleration bomb on YOU (MOVE)" };
-        public InternationalString LongGaze = new() { En = "LONG GAZE on YOU (Look Away)" };
-        public InternationalString LongGazeInv = new() { En = "LONG GAZE on YOU (Look At)" };
-        public InternationalString ShortGaze = new() { En = "SHORT GAZE on YOU (Look Away)" };
-        public InternationalString ShortGazeInv = new() { En = "SHORT GAZE on YOU (Look At)" };
-        public InternationalString LongSpread = new() { En = "LONG SPREAD on YOU" };
-        public InternationalString ShortSpread = new() { En = "SHORT SPREAD on YOU" };
+        public string AccelerationBomb = "Acceleration bomb on YOU (DON'T MOVE)";
+        public string AccelerationBombInv = "Inverted acceleration bomb on YOU (MOVE)";
+        public string LongGaze = "LONG GAZE on YOU (Look Away)";
+        public string LongGazeInv = "LONG GAZE on YOU (Look At)";
+        public string ShortGaze = "SHORT GAZE on YOU (Look Away)";
+        public string ShortGazeInv = "SHORT GAZE on YOU (Look At)";
+        public string LongSpread = "LONG SPREAD on YOU";
+        public string ShortSpread = "SHORT SPREAD on YOU";
     }
 }
